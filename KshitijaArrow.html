@@ -8,8 +8,8 @@
 <body>
     <h2>Hail 189</h2>
     <main>
-        <ul></ul>
-        <p></p>
+        <ul id="frequency-list"></ul>
+        <p id="filtered-data"> </p>
     </main>
 </body>
 <script>
@@ -23,9 +23,6 @@
         seq.push(hail(seq[seq.length - 1]));
     }
     console.log(seq);
-
-
-
 
     // Checking whether the new version produces the same numbers as the original hail function 
 
@@ -43,17 +40,30 @@
     // else
     //  console.log("False");
 
+// Filter and Map
     const filt = seq.filter(seqn => {
         return (seqn + '').indexOf('3') == 0;
     });
     console.log(filt);
-    let para = document.querySelectorAll('p')
-    para[0].innerHTML += 'There are ' + filt.length + ' that has the first digit a 3.';
+    document.querySelector('#filtered-data').innerHTML += 'There are ' + filt.length + ' that has the first digit a 3.';
 
     const mapSeq = seq.map(eachElement => {
         return eachElement % 6;
     });
 
     console.log(mapSeq);
+
+// Sorted data
+
+    let freq = mapSeq.reduce((ac,x) => ac.has(x)? 
+    ac.set(x,ac.get(x)+1):ac.set(x,1), new Map());
+    let sorted = Array.from(freq).sort((a,b) => a[0] - b[0]);
+    let max = Math.max(...sorted.map(x=> x[1]))
+
+   // console.log("Freq sorted max",freq, sorted, max)
+    for(let element of sorted) {
+        document.querySelector("#frequency-list").innerHTML += `<li>Element ${element[0]} occurred ${element[1]} times: <meter min="0" max="${max}" value="${element[1]}"></meter></li>`
+    }
+    
 </script>
 <html>
