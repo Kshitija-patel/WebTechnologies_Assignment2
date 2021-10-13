@@ -34,6 +34,12 @@
         ],
         lineInfo: [0,0,0,0,0,0,0,0]
     };
+
+    let lineInteractions = localStorage.getItem("spider");
+    if (lineInteractions) {
+        rhyme.lineInfo = lineInteractions.split(",");
+    }
+
     document.querySelector("#title").innerHTML = rhyme.title;
     document.querySelector("#src").innerHTML = rhyme.src;
     let rhymeLines = document.querySelector("#rhyme-lines")
@@ -48,6 +54,7 @@
             let lineNo = line.getAttribute("line")
             rhyme.lineInfo[lineNo]++;
             line.innerHTML = `${rhyme.lines[lineNo]} - [Interactions: ${rhyme.lineInfo[lineNo]}]`
+            localStorage.setItem("spider", rhyme.lineInfo.join(","));
         })
     })
 </script>
