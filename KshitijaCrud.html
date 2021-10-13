@@ -3,13 +3,19 @@
 
 <head>
     <title>Assignment 2</title>
+    <style>
+        
+        li:hover {
+            background-color: lightblue;
+        }
+    </style>
 </head>
 
 <body>
-    <h2></h2>
+    <h2 id="title"></h2>
     <main>
-        <p></p>
-        <ul></ul>
+        <p id="src"></p>
+        <ul id="rhyme-lines"></ul>
     </main>
 </body>
 <script>
@@ -28,5 +34,21 @@
         ],
         lineInfo: [0,0,0,0,0,0,0,0]
     };
+    document.querySelector("#title").innerHTML = rhyme.title;
+    document.querySelector("#src").innerHTML = rhyme.src;
+    let rhymeLines = document.querySelector("#rhyme-lines")
+    
+    for(let index=0; index<rhyme.lines.length; index++) {
+        rhymeLines.innerHTML += `<li line="${index}">${rhyme.lines[index]} - [Interactions: ${rhyme.lineInfo[index]}]</li>`
+    }
+
+    let lines = document.querySelectorAll("li")
+    lines.forEach((line) => {
+        line.addEventListener("mouseenter", () => {
+            let lineNo = line.getAttribute("line")
+            rhyme.lineInfo[lineNo]++;
+            line.innerHTML = `${rhyme.lines[lineNo]} - [Interactions: ${rhyme.lineInfo[lineNo]}]`
+        })
+    })
 </script>
 </html>
