@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Assignment 2</title>
+</head>
+
+<body>
+    <h2>Hail 189</h2>
+    <main>
+        <ul></ul>
+        <p></p>
+    </main>
+</body>
+<script>
+    // implementing arroow function
+    let hail = (num) => {
+        return (num % 2) ? 3 * num + 1 : num / 2;
+    }
+
+    let seq = [189];
+    while (seq[seq.length - 1] != 1) {
+        seq.push(hail(seq[seq.length - 1]));
+    }
+    console.log(seq);
+
+    // Checking whether the new version produces the same numbers as the original hail function 
+
+    //     function Hail1(num){
+    //      return (num%2) ? 3*num+1 : num/2;
+    // }
+
+    // let Seq1 =[189];
+    // while (Seq1[Seq1.length-1] !=1){
+    //       Seq1.push(hail(Seq1[Seq1.length-1]));
+    // }
+    // console.log(Seq1);
+    // if(JSON.stringify(seq)==JSON.stringify(Seq1))
+    //  console.log("True");
+    // else
+    //  console.log("False");
+</script>
+<html>
