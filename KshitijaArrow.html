@@ -24,6 +24,9 @@
     }
     console.log(seq);
 
+
+
+
     // Checking whether the new version produces the same numbers as the original hail function 
 
     //     function Hail1(num){
@@ -39,5 +42,18 @@
     //  console.log("True");
     // else
     //  console.log("False");
+
+    const filt = seq.filter(seqn => {
+        return (seqn + '').indexOf('3') == 0;
+    });
+    console.log(filt);
+    let para = document.querySelectorAll('p')
+    para[0].innerHTML += 'There are ' + filt.length + ' that has the first digit a 3.';
+
+    const mapSeq = seq.map(eachElement => {
+        return eachElement % 6;
+    });
+
+    console.log(mapSeq);
 </script>
 <html>
